@@ -1,26 +1,26 @@
-#1{
+#one{
   border: double black medium;
 }
-#2{
+#two{
   overflow: scroll;
 }
-#3{
+#three{
   padding: 2em;
 }
-#4{
+#four{
   padding: 2em;
   border: 4px solid red;
 }
-#5{
+#five{
   margin: 2em;
   border: 4px solid red
 }
-#6{
+#six{
   padding: 1em 1em 1em 6em;
   border: 4px dashed;
   margin: 1em 6em;
 }
-#7{
+#seven{
   padding: 1em 50px;
   border: 2px solid teal;
   margin: 0 auto;
