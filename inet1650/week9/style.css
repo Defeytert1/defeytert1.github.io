@@ -1,5 +1,7 @@
 p{
-  background-color: #C2F670
+  background-color: #C2F670;
+  width: 200px;
+  height: 200px;
 }
 #one{
   border: double black medium;
