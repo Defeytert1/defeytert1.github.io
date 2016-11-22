@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Lady Generals</title>
 	<style>
 		body {
@@ -44,8 +44,17 @@
 		/* Your CSS RULES Below this line */
 		img{max-width: 100%;}
 
-		@media screen and (max-width: 900px;){
+		@media screen and (max-width: 900px){
 			td:nth-child(1), td:nth-child(4) {font-weight: bold;}
+			.team .athlete {width: 45%;}
+			table {font-size: 75%;}
+		}
+
+		@media screen and (max-width: 500px){
+			.team .athlete {width: 100%;}
+			table { border-collapse: collapse;}
+			tr { display: block; margin-bottom: 10px;}
+			th, td { display: block;}
 		}
 
 		/* Your CSS RULES Above this line */
