@@ -1,57 +1,19 @@
-// find template and compile it
-var templateSource = document.getElementById('results-template').innerHTML,
-    template = Handlebars.compile(templateSource),
-    resultsPlaceholder = document.getElementById('results'),
-    playingCssClass = 'playing',
-    audioObject = null;
+google.charts.load('current', {'packages':['table']});
+     google.charts.setOnLoadCallback(drawTable);
 
-var fetchTracks = function (albumId, callback) {
-    $.ajax({
-        url: 'https://api.spotify.com/v1/albums/' + albumId,
-        success: function (response) {
-            callback(response);
-        }
-    });
-};
+     function drawTable() {
+       var data = new google.visualization.DataTable();
+       data.addColumn('string', 'Name');
+       data.addColumn('number', 'Salary');
+       data.addColumn('boolean', 'Full Time Employee');
+       data.addRows([
+         ['Mike',  {v: 10000, f: '$10,000'}, true],
+         ['Jim',   {v:8000,   f: '$8,000'},  false],
+         ['Alice', {v: 12500, f: '$12,500'}, true],
+         ['Bob',   {v: 7000,  f: '$7,000'},  true]
+       ]);
 
-var searchAlbums = function (query) {
-    $.ajax({
-        url: 'https://api.spotify.com/v1/search',
-        data: {
-            q: query,
-            type: 'album'
-        },
-        success: function (response) {
-            resultsPlaceholder.innerHTML = template(response);
-        }
-    });
-};
+       var table = new google.visualization.Table(document.getElementById('table_div'));
 
-results.addEventListener('click', function (e) {
-    var target = e.target;
-    if (target !== null && target.classList.contains('cover')) {
-        if (target.classList.contains(playingCssClass)) {
-            audioObject.pause();
-        } else {
-            if (audioObject) {
-                audioObject.pause();
-            }
-            fetchTracks(target.getAttribute('data-album-id'), function (data) {
-                audioObject = new Audio(data.tracks.items[0].preview_url);
-                audioObject.play();
-                target.classList.add(playingCssClass);
-                audioObject.addEventListener('ended', function () {
-                    target.classList.remove(playingCssClass);
-                });
-                audioObject.addEventListener('pause', function () {
-                    target.classList.remove(playingCssClass);
-                });
-            });
-        }
-    }
-});
-
-document.getElementById('search-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    searchAlbums(document.getElementById('query').value);
-}, false);
+       table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+     }
